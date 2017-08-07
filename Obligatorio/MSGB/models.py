@@ -1,0 +1,34 @@
+from django.db import models
+import datetime
+from django.utils import timezone
+from _overlapped import NULL
+from tkinter.constants import CURRENT
+# Create your models here.
+
+class Libro(models.Model):
+    isbn = models.PositiveIntegerField(primary_key=True)
+    titulo = models.CharField(max_length=200)
+    autor = models.CharField(max_length=200)
+    fecha_ingreso = models.DateField()
+
+class Ejemplar(models.Model):
+    num_inventario = models.AutoField(primary_key=True)
+    libro = models.ForeignKey(Libro, on_delete=models.CASCADE)
+    disponible = models.BooleanField(default = True)
+
+class Socio(models.Model):
+    documento = models.PositiveIntegerField(primary_key=True)
+    nombre = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200)
+    fecha_nacimiento = models.DateField()
+    
+class Prestamo(models.Model):
+    ejemplar = models.ForeignKey(Ejemplar, on_delete=models.CASCADE)
+    socio = models.ForeignKey(Socio, on_delete=models.CASCADE)
+    fecha_ini = models.DateField()
+    fecha_fin = models.DateField(null=True,default=NULL)
+    devuelto = models.BooleanField(default = False)
+
+
+
+
