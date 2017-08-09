@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Info del Socio</title>
+</head>
+<body>
+<h3>Datos del socio:</h3>
+<table>	
+		<tr><td><strong>Documento: </strong></td><td>{{  socio.documento }}</td></tr> 
+		<tr><td><strong>Nombre: </strong></td><td>{{  socio.nombre }}</td></tr>
+		<tr><td><strong>Email: </strong></td><td>{{  socio.email }}</td></tr>
+	</tr>
+</table>
+
+<h4>Pr&eacute;stamos:</h4>
+
+{% if prestamo_list %}
+	<table>	
+		<tr><th><strong>ISBN</strong></th><th>Título</th><th>Fecha Inicio</th><th>Fecha Fin</th></tr> 
+	{% for prestamo in prestamo_list %}
+		<tr>
+			<td>{{ prestamo.ejemplar.libro.isbn}}</td>
+			<td>{{ prestamo.ejemplar.libro.titulo}}</td>
+			<td>{{ prestamo.fecha_ini|date:"d/m/Y" }}</td>
+			<td>{{ prestamo.fecha_fin|date:"d/m/Y" }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+{% else %}
+<p>No se ha efecutado un préstamo.</p>
+{% endif %}
+</body>
+</html>
+
