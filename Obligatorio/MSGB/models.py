@@ -21,6 +21,10 @@ class Socio(models.Model):
     nombre = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
     fecha_nacimiento = models.DateField()
+    moroso = models.BooleanField(default = False)
+    
+    def __str__(self):
+        return "Doc {} Nombre {}".format(self.documento,self.nombre)
     
 class Prestamo(models.Model):
     ejemplar = models.ForeignKey(Ejemplar, on_delete=models.CASCADE)
