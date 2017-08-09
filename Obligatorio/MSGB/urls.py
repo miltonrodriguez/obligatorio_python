@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^socio/(?P<documento>[0-9]+)$', views.info_socio, name='info_socio'),
     url(r'^copia/(?P<nro_inventario>[0-9]+)$', views.copia, name='copia'),
     #url(r'^libro/(?P<isbn>[0-9]+)$', views.libro, name='libro'),
-    #url(r'^morosos$', views.morosos, name='morosos'),
+    url(r'^morosos$', views.morosos, name='morosos'),
     #url(r'^prestamo_fecha/(?P<fecha>$', views.prestamo_fecha, name='prestamo_fecha'),
     #url(r'^futuros_morosos$', views.futuros_morosos$, name='futuros_morosos$'),
     

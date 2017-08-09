@@ -10,7 +10,8 @@ from django.template.context_processors import request
 # Create your views here.
 
 def index(request):
-    return redirect("index")
+    template = loader.get_template('MSGB/index.html')
+    return HttpResponse(template.render())
 
 def prestamo(request):
     return redirect("index")
@@ -34,8 +35,13 @@ def copia(request):
 
 
 
-
-
+def morosos(request):
+    morosos_list = Socio.objects.filter(moroso=True).order_by('documento')
+    template = loader.get_template('MSGB/morosos.html')
+    context = {        
+        'morosos_list': morosos_list,
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def alta_socio(request):

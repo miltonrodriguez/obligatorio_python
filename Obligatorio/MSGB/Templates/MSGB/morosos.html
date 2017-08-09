@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lista Morosos</title>
+</head>
+<body>
+<h3>Lista de morosos:</h3>
+
+{% if morosos_list %}
+	<table>	
+		<tr><th><strong>Documento</strong></th><th>Nombre</th><th>Email</th></tr> 
+	{% for moroso in morosos_list %}
+		<tr>
+			<td>{{ moroso.documento}}</td>
+			<td>{{ moroso.nombre}}</td>
+			<td>{{ moroso.email }}</td>			
+		</tr>
+	{% endfor %}
+	</table>
+{% else %}
+<p>No se encontraron registros.</p>
+{% endif %}
+</body>
+</html>
+
