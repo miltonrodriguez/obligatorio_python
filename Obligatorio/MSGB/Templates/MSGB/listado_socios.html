@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lista Socios</title>
+</head>
+<body>
+
+<a href="./socio/nuevo/">Agregar Socio</a>    
+
+
+<h3>Lista de socios:</h3>
+
+{% if socios_list %}
+    <table>    
+        <tr><th><strong>Documento</strong></th><th>Nombre</th><th>Email</th></tr> 
+    {% for socio in socios_list %}
+        <tr>        
+            <td><a href="./socio/{{ socio.documento }}">{{ socio.documento}}</a> </td>
+            <td><a href="./socio/{{ socio.documento }}">{{ socio.nombre}}</a> </td>
+            <td><a href="./socio/{{ socio.documento }}">{{ socio.email }}</a> </td>                   
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+<p>No se encontraron registros.</p>
+{% endif %}
+</body>
+</html>
+

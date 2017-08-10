@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lista Libros</title>
+</head>
+<body>
+
+<!--  <a href="./libro/nuevo/">Agregar Libro</a>     -->
+<h3>ISBN:</h3>
+<form method="POST" action="./list_libros">
+{% csrf_token %}
+<input type="text" name="id" required >
+
+<button type="submit">Buscar</button>
+</form>
+<br />
+<h3>Lista de libros:</h3>
+
+{% if libros_list %}
+    <table>    
+        <tr><th><strong>ISBN</strong></th><th>Título</th><th>Autor</th><th>Fecha Ingreso</th></tr> 
+    {% for libro in libros_list %}
+        <tr>        
+            <td><a href="./libro/{{ libro.isbn}}">{{ libro.isbn}}</a> </td>
+            <td><a href="./libro/{{ libro.isbn}} ">{{ libro.titulo}}</a> </td>
+            <td><a href="./libro/{{ libro.isbn}} ">{{ libro.autor }}</a> </td>         
+            <td><a href="./libro/{{ libro.isbn}} ">{{ libro.fecha_ingreso|date:"d/m/Y" }}</a> </td>                   
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+<p>No se encontraron registros.</p>
+{% endif %}
+</body>
+</html>
+

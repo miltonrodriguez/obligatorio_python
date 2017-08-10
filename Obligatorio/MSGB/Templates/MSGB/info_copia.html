@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Info del Ejemplar</title>
+</head>
+<body>
+<h3>Datos del ejemplar:</h3>
+	<table>
+	    <tr>
+			<td><strong>Nro Inventario: </strong></td>
+			<td>{{ copia.num_inventario }}</td>
+		</tr>
+		 <tr><td><strong>Estado: </strong></td><td>{% if copia.disponible %} 
+					Disponible 
+				{% else %} 
+					En préstamo
+				{% endif %}</td></tr>
+		<tr>
+			<td><strong>ISBN: </strong></td>
+			<td>{{ copia.libro.isbn }}</td>
+		</tr>
+		<tr>
+			<td><strong>TITULO: </strong></td>
+			<td>{{ copia.libro.titulo }}</td>
+		</tr>
+		<tr>
+			<td><strong>AUTOR: </strong></td>
+			<td>{{ copia.libro.autor }}</td>
+		</tr>
+		<tr>
+			<td><strong>Fecha Ingreso: </strong></td>
+			<td>{{ copia.libro.fecha_ingreso|date:"d/m/Y" }}</td>
+		</tr>
+		</tr>
+	</table>
+	
+{% if not copia.disponible %} 
+	<p><h4>Datos del socio con la copia:</h4>
+	<table>	
+		<tr><td>Documento: </td><td>{{  socio.documento }}</td></tr> 
+		<tr><td>Nombre:</td><td>{{  socio.nombre }}</td></tr>
+		<tr><td>Email:</td><td>{{  socio.email }}</td></tr>
+	</tr>
+</table></p>	
+{% endif %}
+</body>
+</html>
+

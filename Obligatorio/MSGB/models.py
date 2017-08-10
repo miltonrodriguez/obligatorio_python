@@ -10,11 +10,17 @@ class Libro(models.Model):
     titulo = models.CharField(max_length=200)
     autor = models.CharField(max_length=200)
     fecha_ingreso = models.DateField()
+    
+    def __str__(self):
+        return "ISBN {} titulo {}".format(self.isbn,self.titulo)
 
 class Ejemplar(models.Model):
     num_inventario = models.AutoField(primary_key=True)
     libro = models.ForeignKey(Libro, on_delete=models.CASCADE)
     disponible = models.BooleanField(default = True)
+    
+    def __str__(self):
+        return "Nro {} Disponible {} Libro {}".format(self.num_inventario,self.disponible, self.libro)
 
 class Socio(models.Model):
     documento = models.PositiveIntegerField(primary_key=True)
@@ -33,6 +39,7 @@ class Prestamo(models.Model):
     fecha_fin = models.DateField(null=True,default=NULL)
     devuelto = models.BooleanField(default = False)
 
-
+    def __str__(self):
+        return "Devuelto {} Ejemplar {} Socio {}".format(self.devuelto,self.ejemplar,self.socio)
 
 

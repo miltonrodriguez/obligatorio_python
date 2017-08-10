@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Info del Libro</title>
+</head>
+<body>
+	<h3>Datos del Libro:</h3>
+	<table>
+		<tr>
+			<td><strong>ISBN: </strong></td>
+			<td>{{ libro.isbn }}</td>
+		</tr>
+		<tr>
+			<td><strong>TITULO: </strong></td>
+			<td>{{ libro.titulo }}</td>
+		</tr>
+		<tr>
+			<td><strong>AUTOR: </strong></td>
+			<td>{{ libro.autor }}</td>
+		</tr>
+		<tr>
+			<td><strong>Fecha Ingreso: </strong></td>
+			<td>{{ libro.fecha_ingreso|date:"d/m/Y" }}</td>
+		</tr>
+		</tr>
+	</table>
+
+	<h4>Copias:</h4>
+
+	{% if copias_list %}
+	<table>
+		<tr>
+			<th><strong>Nro Inventario</strong></th>
+			<th>Estado</th>
+		</tr>
+		{% for copia in copias_list %}
+		<tr>
+			<td>{{ copia.num_inventario}}</td>
+			<td>{% if copia.disponible %} 
+					Disponible 
+				{% else %} 
+					En préstamo
+				{% endif %}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% else %}
+	<p>No se encontraron registros.</p>
+	{% endif %}
+</body>
+</html>
+

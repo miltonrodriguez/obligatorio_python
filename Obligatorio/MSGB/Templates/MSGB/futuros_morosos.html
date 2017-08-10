@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lista de Futuros Morosos</title>
+</head>
+<body>
+<h3>Lista de futuros morosos:</h3>
+
+{% if morosos_list %}
+	<table>	
+		<tr><th><strong>ISBN</strong></th><th>Fecha Préstamo</th><th>Documento Socio</th><th>Nombre</th></tr> 
+	{% for moroso in morosos_list %}
+		<tr>
+			<td>{{ moroso.ejemplar.libro.isbn}}</td>
+			<td>{{ moroso.fecha_ini|date:"d/m/Y"}}</td>
+			<td>{{ moroso.socio.documento }}</td>
+			<td>{{ moroso.socio.nombre }}</td>			
+		</tr>
+	{% endfor %}
+	</table>
+{% else %}
+<p>No se encontraron registros.</p>
+{% endif %}
+</body>
+</html>
+

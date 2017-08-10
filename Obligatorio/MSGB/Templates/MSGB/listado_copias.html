@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lista Copias</title>
+</head>
+<body>
+
+<h3>Nro Inventario:</h3>
+<form method="POST" action="./list_copias">
+{% csrf_token %}
+<input type="text" name="id" required >
+
+<button type="submit">Buscar</button>
+</form>
+<br />
+<h3>Lista de Copias:</h3>
+
+{% if copias_list %}
+    <table>    
+        <tr><th><strong>Nro Inventario</strong></th><th><strong>ISBN</strong></th><th>Título</th><th>Autor</th><th>Estado</th></tr> 
+    {% for copia in copias_list %}
+        <tr>        
+        	<td><a href="./copia/{{ copia.num_inventario}} ">{{ copia.num_inventario }}</a> </td>        
+            <td><a href="./copia/{{ copia.num_inventario}}">{{ copia.libro.isbn}}</a> </td>
+            <td><a href="./copia/{{ copia.num_inventario}} ">{{ copia.libro.titulo}}</a> </td>
+            <td><a href="./copia/{{ copia.num_inventario}} ">{{ copia.libro.autor }}</a> </td>         
+            <td>{% if copia.disponible %} 
+					Disponible 
+				{% else %} 
+					En préstamo
+				{% endif %}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+<p>No se encontraron registros.</p>
+{% endif %}
+</body>
+</html>
+
