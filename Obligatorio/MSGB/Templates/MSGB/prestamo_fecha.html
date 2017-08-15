@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<head>
+<meta charset="UTF-8">
+    <title>Búsqueda{% if fecha %} Resultados{% endif %}</title>
+</head>
+<body>
+  <h1>Préstamos realizados en la fecha: </h1>
+  <form action="." method="GET">
+    <label for="fecha">Fecha (YYYY-MM-DD): </label>
+    <input type="text" name="fecha" value="{{ fecha|escape }}" required> 
+    <input type="submit" value="Search"> 
+  </form>
+ 
+  {% if error %}
+    <h2>Se ha producido un error. "{{ error|escape }}":</h2>
+  
+ 
+  {% elif fecha %}
+    <h2>Resultados para "{{ fecha|escape }}":</h2>
+ 
+    {% if results %}
+      <table>
+      <tr><th>ISBN</th><th>Copia</th><th>Estado</th><th>Fecha Fin</th><th>Doc Socio</th><th>Nombre Socio</th></tr>
+      {% for prestamo in results %}
+        <tr><td>{{ prestamo.ejemplar.libro.isbn }}</td>
+        <td>{{ prestamo.ejemplar.num_inventario }}</td>
+        <td>{% if prestamo.ejemplar.disponible %} 
+					Disponible 
+				{% else %} 
+					En préstamo
+				{% endif %}</td>
+				
+				<td>{{ prestamo.fecha_fin|date:"d/m/Y"}}</td>
+				<td>{{ prestamo.socio.documento}}</td>
+				<td>{{prestamo.socio.documento}}</td>
+        </tr>
+      {% endfor %}
+      </table>
+    {% else %}
+      <p>No se encontraron registros</p>
+    {% endif %}
+  {% endif %}
+</body>
+</html>

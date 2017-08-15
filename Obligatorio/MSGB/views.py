@@ -6,7 +6,7 @@ from .forms import SocioForm
 from builtins import int
 from django.template import loader
 from django.template.context_processors import request
-from _overlapped import NULL
+import time
 
 
 # Create your views here.
@@ -55,7 +55,7 @@ def info_copia(request, num_inventario):
     id = int(num_inventario)
     copia = get_object_or_404(Ejemplar, pk=id)
     #si la copia esta prestada busco al socio que lo tiene
-    socio, prestamo = NULL, NULL
+    socio, prestamo = None, None
     if not copia.disponible:
         prestamo = Prestamo.objects.filter(devuelto = False, ejemplar_id=id).first()
         socio = prestamo.socio          
@@ -98,7 +98,7 @@ def morosos(request):
         'morosos_list': morosos_list,
     }
     return HttpResponse(template.render(context, request))
-
+ 
 
 def alta_socio(request):
     if request.method == "POST":
@@ -123,6 +123,23 @@ def futuros_morosos(request):
     }
     return HttpResponse(template.render(context, request))
 
-#def libros_prestados(doc_socio):
-#        fecha = datetime.date.today()
-#        for prestamo in Socio
+def prestamo_fecha(request, fecha=''):
+    fecha = request.GET.get('fecha', '')
+    error = None
+    #TODO si es fecha valida
+    try:         
+        es_valida = time.strptime(fecha, '%Y-%m-%d')
+        results = Prestamo.objects.filter(fecha_ini = fecha)
+    except Exception:
+        results = []
+        error = 'La fecha no cumple con el formato correcto'           
+    template = loader.get_template('MSGB/prestamo_fecha.html')
+    context = {        
+        'fecha': fecha,
+        'results' : results,
+        'error' : error,
+    }
+    return HttpResponse(template.render(context, request))
+    
+    
+    

@@ -12,9 +12,8 @@ urlpatterns = [
     url(r'^libro/(?P<isbn>[0-9]+)$', views.info_libro, name='libro'),    
     url(r'^list_libros$', views.list_libros, name='list_libros'),    
     url(r'^morosos$', views.morosos, name='morosos'),
-    #url(r'^prestamo_fecha/(?P<fecha>$', views.prestamo_fecha, name='prestamo_fecha'),
-    url(r'^futuros_morosos$', views.futuros_morosos, name='futuros_morosos$'),
-    
+    url(r'^prestamo_fecha/(?P<fecha>[0-9]+)*', views.prestamo_fecha, name='prestamo_fecha'),
+    url(r'^futuros_morosos$', views.futuros_morosos, name='futuros_morosos$'),    
     url(r'^socio/nuevo/$', views.alta_socio, name='alta_socio'),
     
 ]
