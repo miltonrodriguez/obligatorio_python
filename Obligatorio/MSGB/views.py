@@ -2,11 +2,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from datetime import  date, timedelta
 from .models import Socio, Prestamo, Libro, Ejemplar
-from .forms import SocioForm
+from .forms import SocioForm, PrestamoForm, DevolucionForm
 from builtins import int
 from django.template import loader
 from django.template.context_processors import request
 import time
+
 
 
 # Create your views here.
@@ -16,10 +17,67 @@ def index(request):
     return HttpResponse(template.render())
 
 def prestamo(request):
-    return redirect("index")
+    if request.method == "POST":
+        form = PrestamoForm(request.POST)
+        if form.is_valid():  
+            error = None
+            p = None
+            id_socio = request.POST.get('socio', None)                    
+            socio = get_object_or_404(Socio, pk=id_socio)
+            if (socio.moroso == True):
+                error = 'El socion es moroso. No se le puede prestar libros.'
+            else: 
+                id_libro = int(request.POST.get('libro', None))
+                libro = get_object_or_404(Libro, pk=id_libro)
+                copia = libro.ejemplar_set.all().order_by('-disponible').first()
+                if copia.disponible == False:
+                    error = 'No hay copias disponibles'
+                else:
+                    copia.disponible = False
+                    copia.save()                                       
+                    p = Prestamo(ejemplar = copia, socio = socio, fecha_ini = date.today(), fecha_fin = date.today() + timedelta(days=7), devuelto = False)                        
+                    p.save()                           
+            template = loader.get_template('MSGB/prestamo.html')
+            context = {
+                'error': error,
+                'p' : p,
+                
+            }
+            return HttpResponse(template.render(context, request))
+    else:
+        form = PrestamoForm()
+        return render(request,'forms/prestamos_form.html', {'form':form})
 
 def devolucion(request):
-    return redirect("index")
+    if request.method == "POST":
+        form = DevolucionForm(request.POST)
+        if form.is_valid():  
+            msj = ''            
+            id_socio = request.POST.get('socio', None)                            
+            socio = get_object_or_404(Socio, pk=id_socio)
+            num_inventario = int(request.POST.get('ejemplar', None))
+            ejemplar = get_object_or_404(Ejemplar, pk=num_inventario)
+            p = get_object_or_404(Prestamo,  ejemplar_id=num_inventario , socio_id = id_socio)
+            #chequeo de moroso
+            if not (p.fecha_ini + timedelta(days=7) > date.today()):                        
+                # es moroso
+                socio.moroso = True
+                socio.save()
+                msj =  "El socio devolvio el ejemplar fuera de fecha. "
+            p.fecha_fin = date.today()
+            p.devuelto = True
+            p.save()                        
+            ejemplar.disponible = True
+            ejemplar.save()
+            msj = msj + ' ' +  'Se devolvio con exito el ejemplar.'                
+            template = loader.get_template('MSGB/devolver.html')
+            context = {
+                'msj': msj,                                
+            }
+            return HttpResponse(template.render(context, request))
+    else:
+        form = DevolucionForm()
+        return render(request,'forms/devolver_form.html', {'form':form})
 
 def info_socio(request, documento):
     id = int(documento)
@@ -126,12 +184,12 @@ def futuros_morosos(request):
 def prestamo_fecha(request, fecha=''):
     fecha = request.GET.get('fecha', '')
     error = None
-    #TODO si es fecha valida
-    try:         
-        es_valida = time.strptime(fecha, '%Y-%m-%d')
-        results = Prestamo.objects.filter(fecha_ini = fecha)
-    except Exception:
-        results = []
+    results = []    
+    try:        
+        if (fecha != '' ): 
+            es_valida = time.strptime(fecha, '%Y-%m-%d')
+            results = Prestamo.objects.filter(fecha_ini = fecha)
+    except Exception:        
         error = 'La fecha no cumple con el formato correcto'           
     template = loader.get_template('MSGB/prestamo_fecha.html')
     context = {        

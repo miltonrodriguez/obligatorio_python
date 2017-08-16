@@ -3,8 +3,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^prestamo/(?P<documento>[0-9]+)/(?P<isbn>[0-9]+)$', views.prestamo, name='prestamo'),
-    url(r'^devolucion/(?P<documento>[0-9]+)/(?P<nro_inventario>[0-9]+)$', views.devolucion, name='devolucion'),
+    url(r'^prestamo/', views.prestamo, name='prestamo'),
+    url(r'^devolucion/', views.devolucion, name='devolucion'),
     url(r'^socio/(?P<documento>[0-9]+)$', views.info_socio, name='info_socio'),
     url(r'^list_socios$', views.list_socios, name='list_socio'),
     url(r'^copia/(?P<num_inventario>[0-9]+)$', views.info_copia, name='copia'),

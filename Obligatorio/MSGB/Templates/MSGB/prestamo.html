@@ -1,0 +1,22 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<head>
+<meta charset="UTF-8">
+    <title>Préstamo</title>
+</head>
+<body>
+  <h1>Información del Préstamo</h1> 
+ 
+  {% if error %}
+    <h2>Se ha producido un error. "{{ error}}":</h2>   
+  {% else %}
+  	<br />
+    <table>
+    <tr><td><strong>Libro</strong></td><td>{{ p.ejemplar.libro.isbn }}</td></tr>
+    <tr><td><strong>Socio</strong></td><td>{{ p.socio.nombre }}</td></tr>
+    <tr><td><strong>Fecha Inicio</strong></td><td>{{ p.fecha_ini|date:"d/m/Y" }}</td></tr>
+    <tr><td><strong>Fecha Límite</strong></td><td>{{ p.fecha_fin|date:"d/m/Y" }}</td></tr>
+    </table>
+    
+  {% endif %}
+</body>
+</html>

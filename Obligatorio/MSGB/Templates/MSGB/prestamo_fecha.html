@@ -8,7 +8,7 @@
   <form action="." method="GET">
     <label for="fecha">Fecha (YYYY-MM-DD): </label>
     <input type="text" name="fecha" value="{{ fecha|escape }}" required> 
-    <input type="submit" value="Search"> 
+    <input type="submit" value="Buscar"> 
   </form>
  
   {% if error %}
@@ -16,7 +16,8 @@
   
  
   {% elif fecha %}
-    <h2>Resultados para "{{ fecha|escape }}":</h2>
+  	<br />
+    <h2>Resultados para la fecha: {{ fecha|escape }}</h2>
  
     {% if results %}
       <table>
