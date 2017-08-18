@@ -2,10 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from datetime import  date, timedelta
 from .models import Socio, Prestamo, Libro, Ejemplar
-from .forms import SocioForm, PrestamoForm, DevolucionForm
-from builtins import int
+from .forms import DevolucionForm, PrestamoForm, SocioForm
 from django.template import loader
-from django.template.context_processors import request
 import time
 
 
@@ -17,36 +15,40 @@ def index(request):
     return HttpResponse(template.render())
 
 def prestamo(request):
-    if request.method == "POST":
-        form = PrestamoForm(request.POST)
-        if form.is_valid():  
-            error = None
-            p = None
-            id_socio = request.POST.get('socio', None)                    
-            socio = get_object_or_404(Socio, pk=id_socio)
-            if (socio.moroso == True):
-                error = 'El socion es moroso. No se le puede prestar libros.'
-            else: 
-                id_libro = int(request.POST.get('libro', None))
-                libro = get_object_or_404(Libro, pk=id_libro)
-                copia = libro.ejemplar_set.all().order_by('-disponible').first()
-                if copia.disponible == False:
-                    error = 'No hay copias disponibles'
-                else:
-                    copia.disponible = False
-                    copia.save()                                       
-                    p = Prestamo(ejemplar = copia, socio = socio, fecha_ini = date.today(), fecha_fin = date.today() + timedelta(days=7), devuelto = False)                        
-                    p.save()                           
-            template = loader.get_template('MSGB/prestamo.html')
-            context = {
-                'error': error,
-                'p' : p,
-                
-            }
-            return HttpResponse(template.render(context, request))
-    else:
-        form = PrestamoForm()
-        return render(request,'forms/prestamos_form.html', {'form':form})
+    try:
+        if request.method == "POST":
+            form = PrestamoForm(request.POST)
+            if form.is_valid():  
+                error = None
+                p = None
+                id_socio = request.POST.get('socio', None)                    
+                socio = get_object_or_404(Socio, pk=id_socio)
+                if (socio.moroso == True):
+                    error = 'El socion es moroso. No se le puede prestar libros.'
+                else: 
+                    id_libro = int(request.POST.get('libro', None))
+                    libro = get_object_or_404(Libro, pk=id_libro)
+                    copia = libro.ejemplar_set.all().order_by('-disponible').first()                    
+                    if copia == None or copia.disponible == False:
+                        error = 'No hay copias disponibles'
+                    else:
+                        copia.disponible = False
+                        copia.save()                                       
+                        p = Prestamo(ejemplar = copia, socio = socio, fecha_ini = date.today(), fecha_fin = date.today() + timedelta(days=7), devuelto = False)                        
+                        p.save()                           
+                template = loader.get_template('MSGB/prestamo.html')
+                context = {
+                    'error': error,
+                    'p' : p,
+                    
+                }
+                return HttpResponse(template.render(context, request))
+        else:
+            form = PrestamoForm()
+            return render(request,'forms/prestamos_form.html', {'form':form})
+    except Exception as e:
+        error(request, e)
+        
 
 def devolucion(request):
     if request.method == "POST":
@@ -199,5 +201,13 @@ def prestamo_fecha(request, fecha=''):
     }
     return HttpResponse(template.render(context, request))
     
-    
+def error(request,msj_error):        
+    template = loader.get_template('MSGB/error.html')
+    context = {        
+        'error': msj_error,        
+    }
+    return HttpResponse(template.render(context, request))    
+
+
+
     

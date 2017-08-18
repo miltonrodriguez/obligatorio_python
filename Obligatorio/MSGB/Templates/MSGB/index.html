@@ -1,15 +1,5 @@
-  {% load staticfiles %}
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Biblio</title>
-<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-<link rel="stylesheet" href="{% static 'css/custom.css' %}">
-<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 	<h1>Sistema de Gestión de Biblioteca</h1>
 	<h3>Funcionalidades:</h3>
 	<ul>
@@ -22,5 +12,4 @@
 	<li><a href="/biblio/prestamo_fecha">Búsqueda de Préstamos en una fecha</a></li>
 	<li><a href="/biblio/futuros_morosos">Lista de futuros morosos</a></li>
 	</ul>
-</body>
-</html>
+{% endblock %}
