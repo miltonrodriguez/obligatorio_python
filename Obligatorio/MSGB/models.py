@@ -40,6 +40,6 @@ class Prestamo(models.Model):
     devuelto = models.BooleanField(default = False)
 
     def __str__(self):
-        return "Devuelto {} Ejemplar {} Socio {}".format(self.devuelto,self.ejemplar,self.socio)
+        return "Ejemplar {} Fecha Ini {} Devuelto {} Socio {}".format(self.ejemplar,self.fecha_ini,self.devuelto,self.socio)
 
 

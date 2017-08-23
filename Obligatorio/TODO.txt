@@ -1,0 +1,19 @@
+2 - OK
+3 - Combos anidados https://stackoverflow.com/questions/25706639/django-dependent-select
+
+1 - Agregar dato si el socio es moroso en funcionalidad 4 - OK
+2 - Probar lo que está hecho y corregir bugs
+Del punto 2 hacer énfasis en lo de la fecha. Dijo Gustavo que tomemos una decisión por ejemplo <=7 
+3 - Meter el template u otro template mas lindo en todas las páginas y lookear (tablas, botones, etc)
+4 - VER LO DE LAS URLS. Hoy por hoy no cumplimos con las vistas. Dijo Gustavo que de última lo pongamos en el readme, pero estaría bueno cumplir.
+5 - Ver si agregamos formularios de todo. Hay sólo de socio no?
+6 - El logo de la bilbioteca con el link siempre al index no lo pude poner, no se ve
+
+
+Bugs:
+bg_01 -OK- Devolucion - Si un libro fue prestado en mas de una ocasion al mismo socio, se tiene que traer el registro no  devuelto para poder efectuar la devolucion.
+bg_02 - mejorar el mensaje cuando no se puede devolver porque ya se devolvieron
+bg_03 - Socios, en la lista de prestamos hasta la fecha, habria que diferenciar los devueltos o no mostrarlos.
+bg_04 - Func-07 y 08 - Mejorar el campo fecha
+
+

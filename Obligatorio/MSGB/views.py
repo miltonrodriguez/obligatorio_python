@@ -24,7 +24,7 @@ def prestamo(request):
                 id_socio = request.POST.get('socio', None)                    
                 socio = get_object_or_404(Socio, pk=id_socio)
                 if (socio.moroso == True):
-                    error = 'El socion es moroso. No se le puede prestar libros.'
+                    error = 'El socio es moroso. No se le puede prestar libros.'
                 else: 
                     id_libro = int(request.POST.get('libro', None))
                     libro = get_object_or_404(Libro, pk=id_libro)
@@ -59,7 +59,7 @@ def devolucion(request):
             socio = get_object_or_404(Socio, pk=id_socio)
             num_inventario = int(request.POST.get('ejemplar', None))
             ejemplar = get_object_or_404(Ejemplar, pk=num_inventario)
-            p = get_object_or_404(Prestamo,  ejemplar_id=num_inventario , socio_id = id_socio)
+            p = get_object_or_404(Prestamo,  ejemplar_id=num_inventario , socio_id = id_socio, devuelto = False)
             #chequeo de moroso
             if not (p.fecha_ini + timedelta(days=7) > date.today()):                        
                 # es moroso

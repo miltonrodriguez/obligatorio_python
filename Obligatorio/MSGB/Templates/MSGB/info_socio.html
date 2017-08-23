@@ -10,6 +10,11 @@
 		<tr><td><strong>Documento: </strong></td><td>{{  socio.documento }}</td></tr> 
 		<tr><td><strong>Nombre: </strong></td><td>{{  socio.nombre }}</td></tr>
 		<tr><td><strong>Email: </strong></td><td>{{  socio.email }}</td></tr>
+		{% if socio.moroso %}
+			<tr><td><strong>Es moroso</strong></td></tr>
+		{% else %}
+			<tr><td><strong>No es moroso</strong></td></tr>
+		{% endif %}
 	</tr>
 </table>
 
