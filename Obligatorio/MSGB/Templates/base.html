@@ -14,12 +14,15 @@
 			<div class="navbar navbar-inverse navbar-fixed-top">
 				<div class="adjust-nav">
 					<div class="navbar-header">						
-					<!--	<a class="navbar-brand" href="."><img src={% static "img/logo.png" %}></a> --> 
-						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".sidebar-collapse">
-<span class="icon-bar"><a class="navbar-brand" href="."><img src={% static "img/logo.png" %}></a></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"><img src={% static "img/logo.png" %}></span>
-</button>
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+ <a class="navbar-brand" href=".">
+                        <img src={% static "img/logo.png" %} />
+
+                    </a>
 					</div>
 
 				</div>
@@ -27,7 +30,11 @@
 			<nav class="navbar-default navbar-side" role="navigation">
 				<div class="sidebar-collapse">
 					<ul id="main-menu" class="nav">
-						<li class="active-link"><a href="index.html"> Inicio</li>
+						<li><a href="."><i class="fa fa-desktop "></i> Inicio</a></li>
+						<li><a href="/biblio/prestamo/"><i class="fa fa-edit "></i> Préstamo</a></li>
+						<li><a href="/biblio/devolucion/"><i class="fa fa-edit "></i> Devolución</a></li>
+						<li><a href="/biblio/list_socios"><i class="fa fa-table "></i> Socios</a></li>
+						<li><a href="/biblio/list_copias"> <i class="fa fa-table "></i> Copias</a></li>
 					</ul>
 				</div>
 			</nav>
