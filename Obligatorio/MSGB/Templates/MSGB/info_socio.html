@@ -17,7 +17,7 @@
 
 {% if prestamo_list %}
 	<table class="table table-striped table-bordered table-hover">	
-		<tr><th><strong>ISBN</strong></th><th>Título</th><th>Fecha Inicio</th><th>Fecha Fin</th></tr> 
+		<tr><th><strong>ISBN</strong></th><th>T&iacute;tulo</th><th>Fecha Inicio</th><th>Fecha Fin</th></tr> 
 	{% for prestamo in prestamo_list %}
 		<tr>
 			<td>{{ prestamo.ejemplar.libro.isbn}}</td>
@@ -28,7 +28,7 @@
 	{% endfor %}
 	</table>
 {% else %}
-<p>No se ha efecutado un préstamo.</p>
+<p>No se ha efecutado un pr&eacute;stamo.</p>
 {% endif %}
 
 {% endblock %}
