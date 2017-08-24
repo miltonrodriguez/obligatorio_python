@@ -1,14 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<head>
-<meta charset="UTF-8">
-    <title>Devolver</title>
-</head>
-<body>
-  <h1>Información de la devolución</h1> 
+{% extends "base.html" %}
+{% block content %}
+  <h1>Informaci&oacute;n de la devoluci&oacute;n</h1> 
  
   {% if msj %}
     <h2>{{ msj }}</h2>   
   
   {% endif %}
-</body>
-</html>
+{% endblock %}

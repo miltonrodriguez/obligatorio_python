@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Info del Ejemplar</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 <h3>Datos del ejemplar:</h3>
-	<table>
+	<table class="table table-striped table-bordered table-hover">
 	    <tr>
 			<td><strong>Nro Inventario: </strong></td>
 			<td>{{ copia.num_inventario }}</td>
@@ -14,7 +9,7 @@
 		 <tr><td><strong>Estado: </strong></td><td>{% if copia.disponible %} 
 					Disponible 
 				{% else %} 
-					En préstamo
+					En pr&eacute;stamo
 				{% endif %}</td></tr>
 		<tr>
 			<td><strong>ISBN: </strong></td>
@@ -37,13 +32,12 @@
 	
 {% if not copia.disponible %} 
 	<p><h4>Datos del socio con la copia:</h4>
-	<table>	
+	<table class="table table-striped table-bordered table-hover">	
 		<tr><td>Documento: </td><td>{{  socio.documento }}</td></tr> 
 		<tr><td>Nombre:</td><td>{{  socio.nombre }}</td></tr>
 		<tr><td>Email:</td><td>{{  socio.email }}</td></tr>
 	</tr>
 </table></p>	
 {% endif %}
-</body>
-</html>
+{% endblock %}
 

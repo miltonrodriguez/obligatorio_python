@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Lista de Futuros Morosos</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 <h3>Lista de futuros morosos:</h3>
 
 {% if morosos_list %}
-	<table>	
-		<tr><th><strong>ISBN</strong></th><th>Fecha Préstamo</th><th>Documento Socio</th><th>Nombre</th></tr> 
+	<table class="table table-striped table-bordered table-hover">	
+		<tr><th><strong>ISBN</strong></th><th>Fecha Pr&eacute;stamo</th><th>Documento Socio</th><th>Nombre</th></tr> 
 	{% for moroso in morosos_list %}
 		<tr>
 			<td>{{ moroso.ejemplar.libro.isbn}}</td>
@@ -22,6 +17,5 @@
 {% else %}
 <p>No se encontraron registros.</p>
 {% endif %}
-</body>
-</html>
+{% endblock %}
 
