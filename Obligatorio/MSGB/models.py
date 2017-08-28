@@ -20,7 +20,7 @@ class Ejemplar(models.Model):
     disponible = models.BooleanField(default = True)
     
     def __str__(self):
-        return "Nro {} Disponible {} Libro {}".format(self.num_inventario,self.disponible, self.libro)
+        return "Nro {} - {}".format(self.num_inventario, self.libro)
 
 class Socio(models.Model):
     documento = models.PositiveIntegerField(primary_key=True)

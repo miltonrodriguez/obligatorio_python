@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 
-  <h1>Informaci&oacute;n del Pr&eacute;stamo</h1> 
+  <h3>Informaci&oacute;n del Pr&eacute;stamo</h3> 
  
   {% if error %}
-    <h2>Se ha producido un error. "{{ error}}":</h2>   
+    <h4>Se ha producido un error. "{{ error}}":</h4>   
   {% else %}
   	<br />
     <table class="table table-striped table-bordered table-hover">
     <tr><td><strong>Libro</strong></td><td>{{ p.ejemplar.libro.isbn }}</td></tr>
     <tr><td><strong>Socio</strong></td><td>{{ p.socio.nombre }}</td></tr>
     <tr><td><strong>Fecha Inicio</strong></td><td>{{ p.fecha_ini|date:"d/m/Y" }}</td></tr>
-    <tr><td><strong>Fecha Límite</strong></td><td>{{ p.fecha_fin|date:"d/m/Y" }}</td></tr>
+    <tr><td><strong>Fecha L&iacute;mite</strong></td><td>{{ p.fecha_fin|date:"d/m/Y" }}</td></tr>
     </table>
     
   {% endif %}

@@ -61,7 +61,7 @@ def devolucion(request):
             ejemplar = get_object_or_404(Ejemplar, pk=num_inventario)
             p = get_object_or_404(Prestamo,  ejemplar_id=num_inventario , socio_id = id_socio, devuelto = False)
             #chequeo de moroso
-            if not (p.fecha_ini + timedelta(days=7) > date.today()):                        
+            if  (p.fecha_ini + timedelta(days=7)) > date.today():                        
                 # es moroso
                 socio.moroso = True
                 socio.save()
@@ -84,7 +84,7 @@ def devolucion(request):
 def info_socio(request, documento):
     id = int(documento)
     socio = get_object_or_404(Socio, pk=id)
-    prestamo_list = socio.prestamo_set.all()
+    prestamo_list = socio.prestamo_set.all().order_by('-fecha_ini')
     template = loader.get_template('MSGB/info_socio.html')
     context = {
         'socio': socio,

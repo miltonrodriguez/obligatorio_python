@@ -8,9 +8,9 @@
 		<tr><th><strong>Documento</strong></th><th>Nombre</th><th>Email</th></tr> 
 	{% for moroso in morosos_list %}
 		<tr>
-			<td>{{ moroso.documento}}</td>
-			<td>{{ moroso.nombre}}</td>
-			<td>{{ moroso.email }}</td>			
+			<td><a href="./socio/{{ moroso.documento }}">{{ moroso.documento}}</a></td>
+			<td><a href="./socio/{{ moroso.documento }}">{{ moroso.nombre}}</a></td>
+			<td><a href="./socio/{{ moroso.documento }}">{{ moroso.email }}</a></td>			
 		</tr>
 	{% endfor %}
 	</table>

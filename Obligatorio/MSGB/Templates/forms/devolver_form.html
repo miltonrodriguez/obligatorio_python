@@ -3,7 +3,14 @@
 
 <form method="post">
 	{% csrf_token %} 
-	{{ form.as_p}}
+	
+	
+	<table>
+	<tr><td><label>Socio</label></td> <td style="padding-left: 40px;">{{ form.socio}}</td>
+	<tr><td><label>Libro</label></td> <td style="padding-left: 40px;">{{ form.ejemplar}}</td>
+	</table> 
+	<br />
+	
 	<button type="submit">Devolver</button>
 </form>
 

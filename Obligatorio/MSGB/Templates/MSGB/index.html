@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 	<h1>Sistema de Gesti&oacute;n de Biblioteca</h1>
-	<!--<h3>Funcionalidades:</h3>
-	<ul>
-	<li><a href="/biblio/prestamo/">Pr&eacute;stamo</a></li>
-	<li><a href="/biblio/devolucion/">Devoluci&oacute;n</a></li>	
-	<li><a href="/biblio/list_socios">Socios</a></li>
-	<li><a href="/biblio/list_copias">Copias</a></li>
-	<li><a href="/biblio/list_libros">Libros</a></li>
-	<li><a href="/biblio/morosos">Lista de morosos</a></li>
-	<li><a href="/biblio/prestamo_fecha">B&uacute;squeda de Pr&eacute;stamos en una fecha</a></li>
-	<li><a href="/biblio/futuros_morosos">Lista de futuros morosos</a></li>
-	</ul>-->
+<pre style="white-space: pre-wrap; width:100%">
+Funcionalidades:
+1. Información general del sistema, con menú de links que lleve hacia las restantes funcionalidades.
+2. Préstamo: Dado un número de socio y un número de ISBN realiza un préstamo. Toma cualquier inventario asociado al ISBN. Falla si no hay copias disponibles o si el socio es moroso.
+3. Devolución: Dado un número de socio y un número de inventario específico, realiza la devolución (si está fuera de fecha, el socio pasa a ser moroso, ese estado solo podrá ser levantado vía admin).
+4. Dado un número de socio obtener su información (datos personales y libros prestados hasta la fecha).
+5. Dado un número de inventario obtener la información del libro y mostrar su estado. Si está prestado cdebe desplegarse la info del socio
+6. Dado un ISBN obtener la información del libro y mostrar las copias que tiene y su estado (si están disponibles o prestadas).
+7. Lista de socios clasificados como morosos
+8. Lista de préstamos realizados en una fecha dada indicando qué socio tiene la copia e incluyendo fecha de devolución pautada.
+9. Lista de socios “futuros morosos”: Se trata de aquellos socios que no han realizado la devolución (en la fecha actual), pero que debían hacerlo.
+</pre>
 {% endblock %}

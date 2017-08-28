@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-  <h1>Pr&eacute;stamos realizados en la fecha: </h1>
+  <h3>Pr&eacute;stamos realizados en la fecha: </h3>
   <form action="." method="GET">
     <label for="fecha">Fecha (YYYY-MM-DD): </label>
     <input type="text" name="fecha" value="{{ fecha|escape }}" required> 
@@ -9,12 +9,12 @@
   </form>
  
   {% if error %}
-    <h2>Se ha producido un error. "{{ error|escape }}":</h2>
+    <h4>Se ha producido un error. "{{ error|escape }}":</h4>
   
  
   {% elif fecha %}
   	<br />
-    <h2>Resultados para la fecha: {{ fecha|escape }}</h2>
+    <h4>Resultados para la fecha: {{ fecha|escape }}</h4>
  
     {% if results %}
       <table class="table table-striped table-bordered table-hover">

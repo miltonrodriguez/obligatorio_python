@@ -5,10 +5,12 @@
 		<tr><td><strong>Documento: </strong></td><td>{{  socio.documento }}</td></tr> 
 		<tr><td><strong>Nombre: </strong></td><td>{{  socio.nombre }}</td></tr>
 		<tr><td><strong>Email: </strong></td><td>{{  socio.email }}</td></tr>
+		<tr><td><strong>Fecha Nacimiento: </strong></td><td>{{  socio.fecha_nacimiento }}</td></tr>
+		<tr><td><strong>Estado: </strong></td>
 		{% if socio.moroso %}
-			<tr><td><strong>Es moroso</strong></td></tr>
+			<td><strong>Es moroso</strong></td>
 		{% else %}
-			<tr><td><strong>No es moroso</strong></td></tr>
+			<td><strong>No es moroso</strong></td>
 		{% endif %}
 	</tr>
 </table>
@@ -17,13 +19,18 @@
 
 {% if prestamo_list %}
 	<table class="table table-striped table-bordered table-hover">	
-		<tr><th><strong>ISBN</strong></th><th>T&iacute;tulo</th><th>Fecha Inicio</th><th>Fecha Fin</th></tr> 
+		<tr><th><strong>ISBN</strong></th><th>T&iacute;tulo</th><th>Fecha Inicio</th><th>Fecha Fin</th><th>Estado</th></tr> 
 	{% for prestamo in prestamo_list %}
 		<tr>
 			<td>{{ prestamo.ejemplar.libro.isbn}}</td>
 			<td>{{ prestamo.ejemplar.libro.titulo}}</td>
 			<td>{{ prestamo.fecha_ini|date:"d/m/Y" }}</td>
 			<td>{{ prestamo.fecha_fin|date:"d/m/Y" }}</td>
+			{% if prestamo.devuelto %}
+			<td>Devuelto</td>
+		{% else %}
+			<td>Prestado</td>
+		{% endif %}
 		</tr>
 	{% endfor %}
 	</table>

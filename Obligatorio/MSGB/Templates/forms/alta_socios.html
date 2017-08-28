@@ -3,7 +3,13 @@
 
 <form method="post">
 	{% csrf_token %} 
-	{{ form.as_p}}
+	<table>
+	<tr><td><label>Documento</label></td> <td style="padding-left: 40px;">{{ form.documento}}</td> 
+	<tr><td><label>Nombre</label></td> <td style="padding-left: 40px;">{{ form.nombre}}</td>
+	<tr><td><label>Email</label></td> <td style="padding-left: 40px;">{{ form.email}}</td>
+	<tr><td><label>Fecha Nacimiento</label></td> <td style="padding-left: 40px;">{{ form.fecha_nacimiento}}</td>
+	</table> 
+	<br />
 	<button type="submit">Guardar</button>
 </form>
 
