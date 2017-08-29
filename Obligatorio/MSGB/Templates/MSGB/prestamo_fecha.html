@@ -1,10 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script>
+<!--YYYY-MM-DD-->
+	$(function() {
+	    $( "#id_fecha_busqueda" ).datepicker({
+	        dateFormat: "yy-mm-dd",
+	        autoSize: true,
+	        changeMonth: true,
+	        selectOtherMonths: true,
+	        setDate: new Date()
+	    });
+	});
+</script>
   <h3>Pr&eacute;stamos realizados en la fecha: </h3>
   <form action="." method="GET">
-    <label for="fecha">Fecha (YYYY-MM-DD): </label>
-    <input type="text" name="fecha" value="{{ fecha|escape }}" required> 
+    <label for="fecha">Fecha : </label>
+    <input type="text" id="id_fecha_busqueda" name="fecha" value="{{ fecha|escape }}" required> 
     <input type="submit" value="Buscar"> 
   </form>
  

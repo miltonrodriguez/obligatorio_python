@@ -1,7 +1,8 @@
 - arreglar bug de la fecha. - OK - MR 
 
 - date picker en:
-	- formulario socio
+	- formulario socio - OK - MR
+	- Template prestamo_fecha - OK - MR
 - Mejorar pantalla de prestamo que devuelva resultado del prestamo en la misma pantalla
 - Agregar Socio en list socios con ícono y alineado a la derecha
 
