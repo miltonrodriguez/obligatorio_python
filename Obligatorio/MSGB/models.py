@@ -36,7 +36,7 @@ class Prestamo(models.Model):
     ejemplar = models.ForeignKey(Ejemplar, on_delete=models.CASCADE)
     socio = models.ForeignKey(Socio, on_delete=models.CASCADE)
     fecha_ini = models.DateField()
-    fecha_fin = models.DateField(null=True,default=NULL)
+    fecha_fin = models.DateField(null=True,blank=True)
     devuelto = models.BooleanField(default = False)
 
     def __str__(self):

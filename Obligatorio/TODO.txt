@@ -1,4 +1,4 @@
-- arreglar bug de la fecha. 
+- arreglar bug de la fecha. - OK - MR 
 
 - date picker en:
 	- formulario socio

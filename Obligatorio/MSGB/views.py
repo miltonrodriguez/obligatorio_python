@@ -34,7 +34,8 @@ def prestamo(request):
                     else:
                         copia.disponible = False
                         copia.save()                                       
-                        p = Prestamo(ejemplar = copia, socio = socio, fecha_ini = date.today(), fecha_fin = date.today() + timedelta(days=7), devuelto = False)                        
+                        #p = Prestamo(ejemplar = copia, socio = socio, fecha_ini = date.today(), fecha_fin = date.today() + timedelta(days=7), devuelto = False)
+                        p = Prestamo(ejemplar = copia, socio = socio, fecha_ini = date.today(), devuelto = False)                        
                         p.save()                           
                 template = loader.get_template('MSGB/prestamo.html')
                 context = {
@@ -61,7 +62,7 @@ def devolucion(request):
             ejemplar = get_object_or_404(Ejemplar, pk=num_inventario)
             p = get_object_or_404(Prestamo,  ejemplar_id=num_inventario , socio_id = id_socio, devuelto = False)
             #chequeo de moroso
-            if  (p.fecha_ini + timedelta(days=7)) > date.today():                        
+            if (p.fecha_ini + timedelta(days=7)) < date.today():                        
                 # es moroso
                 socio.moroso = True
                 socio.save()
@@ -176,7 +177,8 @@ def futuros_morosos(request):
     mosoros_list = []    
     prestamo_list = Prestamo.objects.filter(devuelto=False).order_by('fecha_ini')
     if len(prestamo_list) > 0:    
-        mosoros_list = list(filter(lambda x: x.fecha_ini + timedelta(days=7)< date.today(), prestamo_list))
+        mosoros_list = list(filter(lambda x: (x.fecha_ini + timedelta(days=7))< date.today(), prestamo_list))
+        #(p.fecha_ini + timedelta(days=7)) < date.today()
     template = loader.get_template('MSGB/futuros_morosos.html')
     context = {        
         'morosos_list': mosoros_list,
