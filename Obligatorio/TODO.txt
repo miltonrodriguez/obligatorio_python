@@ -1,29 +1,25 @@
-- arreglar bug de la fecha. - OK - MR 
+TODO
+- Probar lo que esta hecho y corregir bugs
+- Mejorar pantalla de prestamo que devuelva resultado del prestamo en la misma pantalla
+- Devolucion - Combos anidados https://stackoverflow.com/questions/25706639/django-dependent-select
+- Meter el template u otro template mas lindo en todas las p�ginas y lookear (tablas, botones, etc)
+- VER LO DE LAS URLS. Hoy por hoy no cumplimos con las vistas. Dijo Gustavo que de �ltima lo pongamos en el readme, pero estar�a bueno cumplir.
+- Ver si agregamos formularios de todo. Hay s�lo de socio no?
 
+DONE
+- arreglar bug de la fecha. - OK - MR 
 - date picker en:
 	- formulario socio - OK - MR
 	- Template prestamo_fecha - OK - MR
-- Mejorar pantalla de prestamo que devuelva resultado del prestamo en la misma pantalla
-- Agregar Socio en list socios con ícono y alineado a la derecha
-
-
-
-2 - OK
-3 - Combos anidados https://stackoverflow.com/questions/25706639/django-dependent-select
-
-1 - Agregar dato si el socio es moroso en funcionalidad 4 - OK
-2 - Probar lo que esta hecho y corregir bugs
-Del punto 2 hacer  enfasis en lo de la fecha. Dijo Gustavo que tomemos una decisi�n por ejemplo <=7 
-3 - Meter el template u otro template mas lindo en todas las p�ginas y lookear (tablas, botones, etc)
-4 - VER LO DE LAS URLS. Hoy por hoy no cumplimos con las vistas. Dijo Gustavo que de �ltima lo pongamos en el readme, pero estar�a bueno cumplir.
-5 - Ver si agregamos formularios de todo. Hay s�lo de socio no?
-6 - El logo de la bilbioteca con el link siempre al index no lo pude poner, no se ve
+- Agregar Socio en list socios con ícono y alineado a la derecha - OK - MR
+- Agregar dato si el socio es moroso en funcionalidad 4 - OK
+- Del punto 2 hacer  enfasis en lo de la fecha. Dijo Gustavo que tomemos una decisi�n por ejemplo <7 - Tomamos >7 moroso 
 
 
 Bugs:
 bg_01 -OK- Devolucion - Si un libro fue prestado en mas de una ocasion al mismo socio, se tiene que traer el registro no  devuelto para poder efectuar la devolucion.
-bg_02 - mejorar el mensaje cuando no se puede devolver porque ya se devolvieron
-bg_03 - Socios, en la lista de prestamos hasta la fecha, habria que diferenciar los devueltos o no mostrarlos.
-bg_04 - Func-07 y 08 - Mejorar el campo fecha
+bg_02 -mejorar el mensaje cuando no se puede devolver porque ya se devolvieron
+bg_03 -OK- Socios, en la lista de prestamos hasta la fecha, habria que diferenciar los devueltos o no mostrarlos.
+bg_04 -OK- Func-07 y 08 - Mejorar el campo fecha
 
 
