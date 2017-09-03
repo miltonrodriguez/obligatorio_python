@@ -193,6 +193,9 @@ def prestamo_fecha(request, fecha=''):
         if (fecha != '' ): 
             es_valida = time.strptime(fecha, '%Y-%m-%d')
             results = Prestamo.objects.filter(fecha_ini = fecha)
+            for r in results:
+                r.fecha_fin = r.fecha_ini + timedelta(days=7)
+            
     except Exception:        
         error = 'La fecha no cumple con el formato correcto'           
     template = loader.get_template('MSGB/prestamo_fecha.html')
